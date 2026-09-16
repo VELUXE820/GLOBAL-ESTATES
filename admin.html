@@ -1,52 +1,130 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VELUXE Admin - Private</title>
+<title>VELUXE Admin - Picture Upload</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}body{background:#f5f7f6}
 .login{max-width:400px;margin:80px auto;background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 30px #0001;text-align:center}
-input{width:100%;padding:14px;border:1px solid #e5e7eb;border-radius:10px;margin:10px 0}
+input,select,textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:10px;margin:6px 0}
 .btn{width:100%;padding:14px;background:#00a651;color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer}
 .admin{display:none;max-width:1100px;margin:20px auto;padding:20px}
 .box{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 16px #0001;margin-bottom:20px}
-.form-control{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:10px;margin:6px 0}
+.upload-area{border:2px dashed #00a651;background:#ecfdf5;border-radius:12px;padding:20px;text-align:center;cursor:pointer;margin:10px 0}
+.upload-area:hover{background:#d1fae5}
+.preview{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.preview img{width:100%;height:100px;object-fit:cover;border-radius:8px;border:2px solid #e5e7eb}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:768px){.grid{grid-template-columns:1fr}}
 </style></head><body>
+
 <div class="login" id="loginBox">
 <div style="font-weight:900;font-size:22px">VELUXE <span style="color:#00a651">ADMIN</span></div>
 <p style="font-size:13px;color:#6b7280;margin:10px 0">Private - Owners Only</p>
-<input type="password" id="pass" placeholder="Enter admin password">
+<input type="password" id="pass" placeholder="Enter password">
 <button class="btn" onclick="checkPass()">Login</button>
-<p style="font-size:11px;color:#9ca3af;margin-top:10px">Default: admin123 - Change in code</p>
+<p style="font-size:11px;color:#9ca3af;margin-top:10px">Default: admin123</p>
 </div>
 
 <div class="admin" id="adminBox">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-<h2>Property Manager - VELUXE USA</h2><a href="index.html" style="background:#f3f4f6;padding:10px 14px;border-radius:8px;text-decoration:none;color:#111;font-weight:600">View Site</a>
+<h2>Property Manager</h2><a href="index.html" style="background:#f3f4f6;padding:10px 14px;border-radius:8px;text-decoration:none;color:#111;font-weight:600">View Site</a>
 </div>
+
 <div class="grid">
-<div class="box"><h3>Add Property</h3><form onsubmit="addP(event)">
-<input class="form-control" id="pTitle" placeholder="Title" required>
-<input class="form-control" id="pLocation" placeholder="Location e.g Houston, Texas, USA" required>
-<select class="form-control" id="pType"><option>House</option><option>Apartment</option><option>Villa</option><option>Condo</option><option>Duplex</option></select>
-<input class="form-control" id="pPrice" type="number" placeholder="Price e.g 3500" required>
-<input class="form-control" id="pBeds" type="number" placeholder="Beds" required>
-<input class="form-control" id="pBaths" type="number" placeholder="Baths" required>
-<input class="form-control" id="pSqft" type="number" placeholder="Sqft">
-<input class="form-control" id="pImage" placeholder="Image URL https://...">
-<textarea class="form-control" id="pDescription" placeholder="Description"></textarea>
-<button class="btn" type="submit">Add Property</button></form></div>
-<div class="box"><h3>Custom Listings</h3><p style="font-size:12px;color:#6b7280">Stored in browser - Export for backup</p><div style="display:flex;gap:8px;margin:12px 0"><button onclick="exportData()" style="padding:8px 12px;border-radius:8px;border:none;background:#f3f4f6;font-weight:600">Export</button><button onclick="document.getElementById('imp').click()" style="padding:8px 12px;border-radius:8px;border:none;background:#f3f4f6;font-weight:600">Import</button><input type="file" id="imp" accept=".json" style="display:none" onchange="importData(event)"><button onclick="clearAll()" style="padding:8px 12px;border-radius:8px;border:none;background:#fee2e2;color:#991b1b;font-weight:600">Clear All</button></div><div id="list"></div></div>
+<div class="box"><h3>Add New Property</h3><form onsubmit="addP(event)">
+<input id="pTitle" placeholder="Title e.g Modern Family House" required>
+<input id="pLocation" placeholder="Location e.g Houston, Texas, USA" required>
+<select id="pType"><option>House</option><option>Apartment</option><option>Villa</option><option>Condo</option><option>Duplex</option></select>
+<input id="pPrice" type="number" placeholder="Price per month e.g 3500" required>
+<input id="pBeds" type="number" placeholder="Bedrooms e.g 3" required>
+<input id="pBaths" type="number" placeholder="Bathrooms e.g 2" required>
+<input id="pSqft" type="number" placeholder="Sqft e.g 1800">
+
+<!-- NEW PICTURE UPLOAD -->
+<label style="font-weight:700;font-size:12px;margin-top:10px;display:block">Property Pictures (max 6)</label>
+<div class="upload-area" onclick="document.getElementById('fileInput').click()">
+<svg width=28 height=28 viewBox="0 0 24 24" fill="none" stroke="#00a651" stroke-width=2><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=9 cy=9 r=2/><path d="M21 15l-3.086-3.086a2 2 0 00-2.828 0L6 21"/></svg>
+<div style="font-weight:700;margin-top:6px;color:#00a651">Tap to upload pictures</div>
+<div style="font-size:11px;color:#6b7280">From your phone or computer</div>
+</div>
+<input type="file" id="fileInput" accept="image/*" multiple style="display:none" onchange="handleFiles(this.files)">
+<div class="preview" id="preview"></div>
+<div id="fileCount" style="font-size:11px;color:#6b7280;margin-top:6px"></div>
+
+<textarea id="pDescription" placeholder="Describe the property..." rows="3"></textarea>
+<button class="btn" type="submit">Add Property</button>
+</form></div>
+
+<div class="box"><h3>Custom Listings</h3><p style="font-size:12px;color:#6b7280">Pictures saved inside browser</p>
+<div style="display:flex;gap:8px;margin:12px 0">
+<button onclick="exportData()" style="padding:8px 12px;border-radius:8px;border:none;background:#f3f4f6;font-weight:600;cursor:pointer">Export</button>
+<button onclick="document.getElementById('imp').click()" style="padding:8px 12px;border-radius:8px;border:none;background:#f3f4f6;font-weight:600;cursor:pointer">Import</button>
+<input type="file" id="imp" accept=".json" style="display:none" onchange="importData(event)">
+<button onclick="clearAll()" style="padding:8px 12px;border-radius:8px;border:none;background:#fee2e2;color:#991b1b;font-weight:600;cursor:pointer">Clear All</button>
+</div>
+<div id="list"></div>
+</div>
 </div>
 </div>
 
 <script>
-function checkPass(){if(document.getElementById('pass').value==='admin123'){document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').style.display='block';render()}else{alert('Wrong password! Default is admin123')}}
+let uploadedImages = [];
+function checkPass(){if(document.getElementById('pass').value==='admin123'){document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').style.display='block';render()}else{alert('Wrong password!')}}
+
+function handleFiles(files){
+  uploadedImages = [];
+  document.getElementById('preview').innerHTML='';
+  let count = Math.min(files.length,6);
+  document.getElementById('fileCount').textContent = count + ' picture(s) selected (max 6)';
+  for(let i=0;i<count;i++){
+    let reader = new FileReader();
+    reader.onload = function(e){
+      uploadedImages.push(e.target.result);
+      let img = document.createElement('img');
+      img.src = e.target.result;
+      document.getElementById('preview').appendChild(img);
+    }
+    reader.readAsDataURL(files[i]);
+  }
+  if(files.length>6) alert('Only first 6 pictures will be used - browser storage limit');
+}
+
 let custom=JSON.parse(localStorage.getItem('veluxe_properties')||'[]');
-function addP(e){e.preventDefault();let p={id:'custom-'+Date.now(),title:document.getElementById('pTitle').value,location:document.getElementById('pLocation').value,type:document.getElementById('pType').value,price:Number(document.getElementById('pPrice').value),beds:Number(document.getElementById('pBeds').value),baths:Number(document.getElementById('pBaths').value),sqft:Number(document.getElementById('pSqft').value||0),image:document.getElementById('pImage').value||'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',images:[],description:document.getElementById('pDescription').value};p.images=[p.image];custom.unshift(p);localStorage.setItem('veluxe_properties',JSON.stringify(custom));e.target.reset();render();alert('Added! Go check homepage')}
-function render(){let box=document.getElementById('list');if(!custom.length){box.innerHTML='<p style="color:#6b7280;font-size:13px">No custom yet</p>';return}box.innerHTML=custom.map(p=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e5e7eb"><div><b style="font-size:13px">${p.title}</b><div style="font-size:11px;color:#6b7280">${p.location} • $${p.price}/mo</div></div><button onclick="del('${p.id}')" style="background:#fee2e2;color:#991b1b;border:none;padding:6px 10px;border-radius:6px;font-weight:700">Del</button></div>`).join('')}
+function addP(e){
+  e.preventDefault();
+  if(uploadedImages.length===0){
+    alert('Please upload at least 1 picture!');
+    return;
+  }
+  let p={
+    id:'custom-'+Date.now(),
+    title:document.getElementById('pTitle').value,
+    location:document.getElementById('pLocation').value,
+    type:document.getElementById('pType').value,
+    price:Number(document.getElementById('pPrice').value),
+    beds:Number(document.getElementById('pBeds').value),
+    baths:Number(document.getElementById('pBaths').value),
+    sqft:Number(document.getElementById('pSqft').value||0),
+    image:uploadedImages[0],
+    images:uploadedImages,
+    description:document.getElementById('pDescription').value
+  };
+  custom.unshift(p);
+  localStorage.setItem('veluxe_properties',JSON.stringify(custom));
+  e.target.reset();
+  document.getElementById('preview').innerHTML='';
+  document.getElementById('fileCount').textContent='';
+  uploadedImages=[];
+  render();
+  alert('Property Added with '+p.images.length+' pictures! Check homepage');
+}
+
+function render(){
+  let box=document.getElementById('list');
+  if(!custom.length){box.innerHTML='<p style="color:#6b7280;font-size:13px">No custom yet</p>';return}
+  box.innerHTML=custom.map(p=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e5e7eb;gap:10px"><div style="display:flex;gap:10px"><img src="${p.image}" style="width:50px;height:50px;border-radius:8px;object-fit:cover"><div><b style="font-size:13px">${p.title}</b><div style="font-size:11px;color:#6b7280">${p.location} • $${p.price}/mo • ${p.images.length} pics</div></div></div><button onclick="del('${p.id}')" style="background:#fee2e2;color:#991b1b;border:none;padding:6px 10px;border-radius:6px;font-weight:700;cursor:pointer;height:fit-content">Del</button></div>`).join('')
+}
 function del(id){if(!confirm('Delete?'))return;custom=custom.filter(x=>x.id!==id);localStorage.setItem('veluxe_properties',JSON.stringify(custom));render()}
 function exportData(){let blob=new Blob([JSON.stringify(custom,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='veluxe-listings.json';a.click()}
-function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=function(ev){try{custom=JSON.parse(ev.target.result);localStorage.setItem('veluxe_properties',JSON.stringify(custom));render();alert('Imported')}catch{alert('Invalid file')}};r.readAsText(f)}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=function(ev){try{custom=JSON.parse(ev.target.result);localStorage.setItem('veluxe_properties',JSON.stringify(custom));render();alert('Imported '+custom.length+' properties')}catch{alert('Invalid file')}};r.readAsText(f)}
 function clearAll(){if(!confirm('Clear all custom?'))return;custom=[];localStorage.setItem('veluxe_properties',JSON.stringify(custom));render()}
 </script>
 </body></html>
