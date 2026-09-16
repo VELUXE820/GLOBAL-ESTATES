@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VELUXE USA - Rental Homes</title>
+<title>VELUXE USA - Real Filter System</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:#f5f7f6;color:#111827}
 .top{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:20;box-shadow:0 1px 10px #0001}
 .logo{font-weight:900;font-size:18px;color:#0a3d2e}.logo span{color:#00a651}
+.menu{display:flex;gap:16px;font-size:13px;font-weight:600}.menu a{color:#374151;text-decoration:none}
 .hero{position:relative;height:420px;background:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200') center/cover}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#0007,#0002)}
 .hero-text{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 20px;z-index:2;color:#fff;max-width:1200px;margin:0 auto}
@@ -14,7 +15,7 @@ body{background:#f5f7f6;color:#111827}
 .search-card{background:#fff;max-width:1100px;margin:-55px auto 0;border-radius:16px;padding:16px;box-shadow:0 12px 30px #0002;position:relative;z-index:10;display:flex;flex-direction:column;gap:12px;margin-left:20px;margin-right:20px}
 .search-input{width:100%;padding:16px;border:1px solid #e5e7eb;border-radius:12px;font-size:15px}
 .btn-row{display:flex;gap:10px}
-.filt{background:#f3f4f6;border:none;padding:12px 18px;border-radius:10px;font-weight:600}
+.filt{background:#f3f4f6;border:none;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer}
 .green{background:#00a651;color:#fff;border:none;padding:12px 28px;border-radius:10px;font-weight:700;cursor:pointer}
 .warn{max-width:1100px;margin:18px auto;padding:12px 16px;background:#fffbeb;border:1px solid #fcd34d;border-radius:12px;font-size:12px;color:#92400e;margin-left:20px;margin-right:20px}
 .grid{max-width:1200px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
@@ -23,6 +24,19 @@ body{background:#f5f7f6;color:#111827}
 .heart{position:absolute;top:12px;right:12px;background:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0002}
 .card-body{padding:14px}
 .price{font-weight:800;font-size:18px;color:#0a3d2e}
+.section{max-width:1200px;margin:50px auto;padding:0 20px}
+.section h2{font-size:28px;font-weight:800;color:#0a3d2e;margin-bottom:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.two{grid-template-columns:1fr}}
+.box{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 16px #0001}
+.svc{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-top:16px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:10px;margin:6px 0}
+/* FILTER MODAL */
+.filter-modal{position:fixed;inset:0;background:#0008;display:none;z-index:60;align-items:flex-end}
+.filter-box{background:#fff;width:100%;max-width:500px;margin:0 auto;border-radius:20px 20px 0 0;padding:20px;max-height:90vh;overflow:auto;animation:slideUp.3s}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.chip{display:inline-block;padding:8px 14px;border:1px solid #e5e7eb;border-radius:20px;font-size:13px;margin:4px;cursor:pointer}
+.chip.active{background:#00a651;color:#fff;border-color:#00a651}
 .wa-float{position:fixed;bottom:20px;right:20px;background:#25D366;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px #0003;z-index:30;font-size:28px;text-decoration:none}
 .modal{position:fixed;inset:0;background:#000c;display:none;z-index:50;overflow:auto;padding:16px}
 .mc{background:#fff;max-width:900px;margin:20px auto;border-radius:16px;overflow:hidden}
@@ -30,48 +44,116 @@ body{background:#f5f7f6;color:#111827}
 .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:6px;background:#000}
 .thumbs img{height:110px;object-fit:cover;border-radius:8px;cursor:pointer;width:100%}
 .x{position:absolute;top:16px;right:16px;background:#fff;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;cursor:pointer}
-.ft{background:#0a3d2e;color:#a7f3d0;padding:30px 20px;text-align:center;margin-top:40px;font-size:13px}
+.ft{background:#0a3d2e;color:#a7f3d0;padding:40px 20px;text-align:center;margin-top:40px;font-size:13px}
 </style></head><body>
 
-<div class=top><div class=logo>🏠 VELUXE <span>USA</span></div><div style="font-size:11px;font-weight:700;letter-spacing:.5px">🇺🇸 USA LISTINGS PLATFORM</div></div>
+<div class=top><div class=logo>🏠 VELUXE <span>USA</span></div><div class=menu><a href="#listings">Listings</a><a href="#about">About</a><a href="#services">Services</a><a href="#contact">Contact</a></div></div>
 
-<div class=hero><div class=hero-text><h1>Discover Your Dream Home to rent in USA</h1><p>Browse listings across 50 states - Contact lister to verify details</p></div></div>
+<div class=hero><div class=hero-text><h1>Discover Your Dream Home to rent in USA</h1><p>VELUXE - Filter by beds, price, state</p></div></div>
 
-<div class=search-card>
-<input class=search-input placeholder="Search USA e.g Houston, Texas, Miami, New York..." id="q" onkeyup="filterH()">
-<div class=btn-row><button class=filt>Filters: Beds / Price</button><button class=green onclick="filterH()">Search</button></div>
+<div class=search-card id="listings">
+<input class=search-input placeholder="Search USA e.g Houston, Texas, Miami..." id="q" onkeyup="applyFilters()">
+<div class=btn-row><button class=filt onclick="openFilter()">⚙️ Filters <span id="filterCount" style="background:#00a651;color:#fff;padding:2px 6px;border-radius:10px;font-size:10px;display:none">0</span></button><button class=green onclick="applyFilters()">Search</button><button class=filt onclick="clearFilters()">Clear</button></div>
 </div>
 
-<div class=warn>⚠️ <b>Demo Listings Disclaimer:</b> Properties shown are sample listings for platform demonstration. All information is provided by the lister and has NOT been independently verified by VELUXE. Always verify ownership, title, and inspect property in person before any payment. VELUXE makes no claim of verification.</div>
+<div class=warn>⚠️ <b>Demo:</b> Info provided by lister, NOT verified by VELUXE. Verify before payment. • <span id="resultCount">6 properties</span></div>
 
 <div class=grid id=grid></div>
 
+<!-- FILTER MODAL - NOW WORKING -->
+<div class="filter-modal" id="filterModal" onclick="if(event.target==this)closeFilter()">
+<div class="filter-box">
+<div style="display:flex;justify-content:space-between;align-items:center"><h3 style="font-weight:800">Filters</h3><div onclick="closeFilter()" style="background:#f3f4f6;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer">✕</div></div>
+
+<div style="margin-top:16px"><b style="font-size:14px">📍 State</b><br>
+<span class="chip" onclick="toggleChip(this,'state','Texas')">Texas</span>
+<span class="chip" onclick="toggleChip(this,'state','New York')">New York</span>
+<span class="chip" onclick="toggleChip(this,'state','Florida')">Florida</span>
+<span class="chip" onclick="toggleChip(this,'state','California')">California</span>
+<span class="chip" onclick="toggleChip(this,'state','Illinois')">Illinois</span>
+</div>
+
+<div style="margin-top:16px"><b style="font-size:14px">🛏 Bedrooms</b><br>
+<span class="chip" onclick="toggleChip(this,'beds','2')">2 Beds</span>
+<span class="chip" onclick="toggleChip(this,'beds','3')">3 Beds</span>
+<span class="chip" onclick="toggleChip(this,'beds','4')">4 Beds</span>
+<span class="chip" onclick="toggleChip(this,'beds','5')">5 Beds</span>
+</div>
+
+<div style="margin-top:16px"><b style="font-size:14px">💰 Price Range (per month)</b><br>
+<span class="chip" onclick="toggleChip(this,'price','0-3000')">Under $3,000</span>
+<span class="chip" onclick="toggleChip(this,'price','3000-5000')">$3k - $5k</span>
+<span class="chip" onclick="toggleChip(this,'price','5000-10000')">$5k+</span>
+</div>
+
+<div style="margin-top:16px"><b style="font-size:14px">🏠 Property Type</b><br>
+<span class="chip" onclick="toggleChip(this,'type','House')">House</span>
+<span class="chip" onclick="toggleChip(this,'type','Apartment')">Apartment</span>
+<span class="chip" onclick="toggleChip(this,'type','Villa')">Villa</span>
+<span class="chip" onclick="toggleChip(this,'type','Condo')">Condo</span>
+<span class="chip" onclick="toggleChip(this,'type','Duplex')">Duplex</span>
+</div>
+
+<div style="margin-top:20px;display:flex;gap:10px">
+<button class="filt" style="flex:1" onclick="clearFilters()">Clear All</button>
+<button class="green" style="flex:2" onclick="applyFilters();closeFilter()">Apply Filters</button>
+</div>
+</div>
+</div>
+
+<!-- ABOUT, SERVICES, CONTACT SECTIONS -->
+<div class="section" id="about"><h2>About VELUXE USA</h2><div class="two"><div class="box"><h3>Who We Are</h3><p style="font-size:14px;color:#4b5563;margin-top:8px">VELUXE USA is a modern rental platform inspired by FirstChoiceProperty design, focused on US market. We connect renters with property owners across Texas, NY, Florida, California, Illinois. We do NOT claim false verification.</p></div><div class="box"><h3>Why Choose Us?</h3><ul style="font-size:14px;color:#4b5563;margin-top:8px;line-height:1.8"><li>🇺🇸 USA-only • 📸 6 pics • 🗺 Map • 💬 WhatsApp • ⚠️ Honest</li></ul></div></div></div>
+<div class="section" id="services"><h2>Our Services</h2><div class="svc"><div class="box"><h3>🏠 Rental Listings</h3><p style="font-size:13px;color:#6b7280">List your house with 6 gallery images.</p></div><div class="box"><h3>🔍 Smart Filter</h3><p style="font-size:13px;color:#6b7280">Filter by state, beds, price, type - NOW WORKING.</p></div><div class="box"><h3>💬 WhatsApp</h3><p style="font-size:13px;color:#6b7280">One tap to chat with lister.</p></div></div></div>
+<div class="section" id="contact"><h2>Contact Us</h2><div class="two"><div class="box"><p style="font-size:14px"><b>📍</b> Houston, Texas, USA (Demo)<br><b>📞</b> +1 (555) 123-4567<br><b>✉️</b> hello@veluxeusa.com</p></div><div class="box"><input placeholder="Your Name" id="cname"><textarea placeholder="Message..." rows="3" id="cmsg"></textarea><button class="green" style="width:100%;margin-top:8px" onclick="window.open('https://wa.me/15551234567?text=Hello VELUXE, I am '+document.getElementById('cname').value+': '+document.getElementById('cmsg').value,'_blank')">Send via WhatsApp</button></div></div></div>
+
+<div class=ft>© 2026 VELUXE USA • Honest Listings • /admin.html</div>
 <a class=wa-float href="https://wa.me/15551234567" target="_blank">💬</a>
-
 <div class=modal id=modal><div class=x onclick="closeM()">✕</div><div class=mc id=mc></div></div>
-
-<div class=ft><b style="color:#fff">VELUXE USA</b> - Real Estate Platform • Inspired by FirstChoice Design<br>Admin: /admin.html • Built for USA market • No false verification claims</div>
 
 <script>
 let H=[
-{t:"4 Bedroom Family House",l:"Houston, Texas, USA",pr:"$3,500/mo",d:"4 Bed • 3 Bath • 2,400 sqft",m:["https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400"]},
-{t:"Luxury Manhattan Apartment",l:"New York, NY, USA",pr:"$4,200/mo",d:"2 Bed • 2 Bath • 1,100 sqft",m:["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400"]},
-{t:"Miami Beach Villa with Pool",l:"Miami, Florida, USA",pr:"$8,500/mo",d:"5 Bed • 5 Bath • 4,200 sqft",m:["https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"]},
-{t:"Modern LA Family Home",l:"Los Angeles, CA, USA",pr:"$5,800/mo",d:"3 Bed • 3 Bath • 2,100 sqft",m:["https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"]},
-{t:"Austin Texas Duplex",l:"Austin, Texas, USA",pr:"$2,900/mo",d:"3 Bed • 2 Bath • 1,800 sqft",m:["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"]},
-{t:"Chicago Downtown Condo",l:"Chicago, IL, USA",pr:"$2,400/mo",d:"2 Bed • 2 Bath • 1,200 sqft",m:["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400"]}
+{t:"4 Bedroom Family House",l:"Houston, Texas, USA",pr:"$3,500/mo",d:"4 Bed • 3 Bath • 2,400 sqft",beds:4,price:3500,type:"House",state:"Texas",m:["https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400"]},
+{t:"Luxury Manhattan Apartment",l:"New York, NY, USA",pr:"$4,200/mo",d:"2 Bed • 2 Bath • 1,100 sqft",beds:2,price:4200,type:"Apartment",state:"New York",m:["https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400"]},
+{t:"Miami Beach Villa with Pool",l:"Miami, Florida, USA",pr:"$8,500/mo",d:"5 Bed • 5 Bath • 4,200 sqft",beds:5,price:8500,type:"Villa",state:"Florida",m:["https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"]},
+{t:"Modern LA Family Home",l:"Los Angeles, CA, USA",pr:"$5,800/mo",d:"3 Bed • 3 Bath • 2,100 sqft",beds:3,price:5800,type:"House",state:"California",m:["https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"]},
+{t:"Austin Texas Duplex",l:"Austin, Texas, USA",pr:"$2,900/mo",d:"3 Bed • 2 Bath • 1,800 sqft",beds:3,price:2900,type:"Duplex",state:"Texas",m:["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"]},
+{t:"Chicago Downtown Condo",l:"Chicago, IL, USA",pr:"$2,400/mo",d:"2 Bed • 2 Bath • 1,200 sqft",beds:2,price:2400,type:"Condo",state:"Illinois",m:["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800","https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400","https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=400","https://images.unsplash.com/photo-1613977257363-707ba9348227?w=400","https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=400","https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=400"]}
 ];
 let saved=JSON.parse(localStorage.getItem('veluxe_global')||'[]');
 let A=saved.length?saved.concat(H):H;
-function render(list){
-document.getElementById('grid').innerHTML=list.map((h,i)=>`<div class=card onclick="openM(${A.indexOf(h)})"><div class=heart>♡</div><img src="${h.m[0]}"><div class=card-body><div class=price>${h.pr}</div><div style="font-weight:700">${h.t}</div><div style="color:#6b7280;font-size:13px">📍 ${h.l} • ${h.d}</div><div style="font-size:10px;color:#9ca3af;margin-top:6px">Info provided by lister • Not verified • Demo</div></div></div>`).join('');
+let active={state:[],beds:[],price:[],type:[]};
+
+function openFilter(){document.getElementById('filterModal').style.display='flex'}
+function closeFilter(){document.getElementById('filterModal').style.display='none'}
+function toggleChip(el,cat,val){
+el.classList.toggle('active');
+if(el.classList.contains('active')){if(!active[cat].includes(val))active[cat].push(val)}else{active[cat]=active[cat].filter(v=>v!=val)}
+updateCount();
 }
-function filterH(){let q=document.getElementById('q').value.toLowerCase();let f=A.filter(h=>(h.t+h.l).toLowerCase().includes(q));render(f);}
-function openM(i){
-let h=A[i];
-document.getElementById('mc').innerHTML=`<img class=big id=big src="${h.m[0]}"><div class=thumbs>${h.m.map(x=>`<img src="${x}" onclick="document.getElementById('big').src='${x}'">`).join('')}</div><div style="padding:16px"><div class=price>${h.pr}</div><h3>${h.t}</h3><p style="color:#6b7280">📍 ${h.l} • ${h.d}</p><div style="background:#fffbeb;border:1px solid #fcd34d;padding:10px;border-radius:8px;font-size:12px;margin:10px 0">⚠️ This is a demo/sample listing. Information is provided by the lister and has NOT been independently verified by VELUXE. Please verify ownership, request documents, and inspect in person before any payment.</div><p style="font-size:13px">Contact lister for viewing, floor plan, and additional details for this property in ${h.l}.</p><a href="https://wa.me/15551234567?text=Hi VELUXE, I want ${h.t} in ${h.l}" target="_blank" style="display:block;background:#00a651;color:#fff;text-align:center;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;margin-top:12px">💬 Contact Lister</a><a href="https://maps.google.com/?q=${h.l}" target="_blank" style="display:block;text-align:center;margin-top:10px;color:#00a651;font-weight:700;text-decoration:none">🗺 View on Map</a></div>`;
-document.getElementById('modal').style.display='block';
+function updateCount(){let c=active.state.length+active.beds.length+active.price.length+active.type.length;let badge=document.getElementById('filterCount');if(c>0){badge.style.display='inline';badge.textContent=c}else{badge.style.display='none'}}
+function clearFilters(){active={state:[],beds:[],price:[],type:[]};document.querySelectorAll('.chip.active').forEach(e=>e.classList.remove('active'));document.getElementById('q').value='';updateCount();render(A);document.getElementById('resultCount').textContent=A.length+' properties';closeFilter();}
+function applyFilters(){
+let q=document.getElementById('q').value.toLowerCase();
+let filtered=A.filter(h=>{
+let okSearch=(h.t+h.l).toLowerCase().includes(q);
+let okState=active.state.length==0||active.state.some(s=>h.state.includes(s)||h.l.includes(s));
+let okBeds=active.beds.length==0||active.beds.some(b=>h.beds==b);
+let okType=active.type.length==0||active.type.some(t=>h.type==t||h.t.includes(t));
+let okPrice=true;
+if(active.price.length>0){okPrice=active.price.some(range=>{
+if(range=='0-3000')return h.price<3000;
+if(range=='3000-5000')return h.price>=3000&&h.price<=5000;
+if(range=='5000-10000')return h.price>5000;
+return true;
+})}
+return okSearch&&okState&&okBeds&&okType&&okPrice;
+});
+render(filtered);
+document.getElementById('resultCount').textContent=filtered.length+' properties found'+(filtered.length==0?' - Try clear filters':'');
 }
+
+function render(list){document.getElementById('grid').innerHTML=list.map((h,i)=>`<div class=card onclick="openM(${A.indexOf(h)})"><div class=heart>♡</div><img src="${h.m[0]}"><div class=card-body><div class=price>${h.pr}</div><div style="font-weight:700">${h.t}</div><div style="color:#6b7280;font-size:13px">📍 ${h.l} • ${h.d}</div><div style="font-size:10px;color:#9ca3af;margin-top:6px">${h.state} • ${h.type} • Demo • Not verified</div></div></div>`).join('');if(list.length==0)document.getElementById('grid').innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:#6b7280">No properties match filter. <b onclick="clearFilters()" style="color:#00a651;cursor:pointer">Clear Filters</b></div>';}
+function openM(i){let h=A[i];document.getElementById('mc').innerHTML=`<img class=big id=big src="${h.m[0]}"><div class=thumbs>${h.m.map(x=>`<img src="${x}" onclick="document.getElementById('big').src='${x}'">`).join('')}</div><div style="padding:16px"><div class=price>${h.pr}</div><h3>${h.t}</h3><p style="color:#6b7280">📍 ${h.l} • ${h.d} • ${h.type}</p><div style="background:#fffbeb;border:1px solid #fcd34d;padding:10px;border-radius:8px;font-size:12px;margin:10px 0">⚠️ Demo listing - Info provided by lister, NOT verified by VELUXE.</div><a href="https://wa.me/15551234567?text=Hi VELUXE, I want ${h.t} in ${h.l}" target="_blank" style="display:block;background:#00a651;color:#fff;text-align:center;padding:14px;border-radius:10px;text-decoration:none;font-weight:700;margin-top:12px">💬 Contact Lister</a></div>`;document.getElementById('modal').style.display='block';}
 function closeM(){document.getElementById('modal').style.display='none'}
 render(A);
 </script>
