@@ -1,64 +1,52 @@
 <!DOCTYPE html>
 <html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin - VELUXE</title>
-<style>
-*{font-family:Inter,Arial;box-sizing:border-box}
-body{background:#f1f5f9;padding:16px;margin:0}
-.box{background:#fff;max-width:720px;margin:0 auto;padding:18px;border-radius:16px;box-shadow:0 6px 20px #0001}
-input,textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:10px;font-size:14px}
-button{background:#2563eb;color:#fff;border:none;padding:14px;border-radius:10px;width:100%;font-weight:700;cursor:pointer;margin-top:8px}
-.pic-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
-.pic-box{border:2px dashed #cbd5e1;border-radius:12px;padding:10px;text-align:center;background:#f8fafc}
-.pic-box img{width:100%;height:90px;object-fit:cover;border-radius:8px;display:none;margin-top:6px}
-.house{background:#f8fafc;padding:10px;border-radius:10px;margin:8px 0;display:flex;gap:10px;align-items:center}
-.house img{width:60px;height:60px;object-fit:cover;border-radius:8px}
-.lab{font-weight:700;font-size:13px;margin-top:10px;display:block}
-</style>
-</head><body>
-<div class="box" id="login">
-<h2>🔐 Admin Login</h2>
-<input id="pass" type="password" placeholder="Enter password">
-<button onclick="if(document.getElementById('pass').value=='admin123'){document.getElementById('login').style.display='none';document.getElementById('main').style.display='block';loadHouses()}else{alert('Wrong! Use admin123')}">Login</button>
+<title>VELUXE Admin - Private</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}body{background:#f5f7f6}
+.login{max-width:400px;margin:80px auto;background:#fff;padding:30px;border-radius:16px;box-shadow:0 10px 30px #0001;text-align:center}
+input{width:100%;padding:14px;border:1px solid #e5e7eb;border-radius:10px;margin:10px 0}
+.btn{width:100%;padding:14px;background:#00a651;color:#fff;border:none;border-radius:10px;font-weight:700;cursor:pointer}
+.admin{display:none;max-width:1100px;margin:20px auto;padding:20px}
+.box{background:#fff;padding:20px;border-radius:16px;box-shadow:0 4px 16px #0001;margin-bottom:20px}
+.form-control{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:10px;margin:6px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:768px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="login" id="loginBox">
+<div style="font-weight:900;font-size:22px">VELUXE <span style="color:#00a651">ADMIN</span></div>
+<p style="font-size:13px;color:#6b7280;margin:10px 0">Private - Owners Only</p>
+<input type="password" id="pass" placeholder="Enter admin password">
+<button class="btn" onclick="checkPass()">Login</button>
+<p style="font-size:11px;color:#9ca3af;margin-top:10px">Default: admin123 - Change in code</p>
 </div>
-<div class="box" id="main" style="display:none">
-<h2>🏠 Add New Property (Pick from Gallery)</h2>
-<span class=lab>House Title</span><input id="t" placeholder="e.g Palm Jumeirah Villa">
-<span class=lab>Location</span><input id="l" placeholder="e.g Dubai, UAE">
-<span class=lab>Price</span><input id="p" placeholder="e.g $1,250,000">
-<span class=lab>Bed/Bath</span><input id="b" placeholder="e.g 5 Bed • 6 Bath">
-<span class=lab>Write up</span><textarea id="d" placeholder="Describe house..."></textarea>
-<span class=lab>📸 6 Pictures - Tap to Pick from Phone</span>
-<div class=pic-grid>
-<div class=pic-box>Main<input type=file accept="image/*" onchange="read(this,0)"><img id="pv0"></div>
-<div class=pic-box>Living<input type=file accept="image/*" onchange="read(this,1)"><img id="pv1"></div>
-<div class=pic-box>Kitchen<input type=file accept="image/*" onchange="read(this,2)"><img id="pv2"></div>
-<div class=pic-box>Bedroom<input type=file accept="image/*" onchange="read(this,3)"><img id="pv3"></div>
-<div class=pic-box>Bathroom<input type=file accept="image/*" onchange="read(this,4)"><img id="pv4"></div>
-<div class=pic-box>Pool<input type=file accept="image/*" onchange="read(this,5)"><img id="pv5"></div>
+
+<div class="admin" id="adminBox">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+<h2>Property Manager - VELUXE USA</h2><a href="index.html" style="background:#f3f4f6;padding:10px 14px;border-radius:8px;text-decoration:none;color:#111;font-weight:600">View Site</a>
 </div>
-<button onclick="addHouse()" style="background:#16a34a">+ ADD HOUSE TO WEBSITE</button>
-<h3 style="margin-top:22px">Current Houses</h3>
-<div id="list"></div>
+<div class="grid">
+<div class="box"><h3>Add Property</h3><form onsubmit="addP(event)">
+<input class="form-control" id="pTitle" placeholder="Title" required>
+<input class="form-control" id="pLocation" placeholder="Location e.g Houston, Texas, USA" required>
+<select class="form-control" id="pType"><option>House</option><option>Apartment</option><option>Villa</option><option>Condo</option><option>Duplex</option></select>
+<input class="form-control" id="pPrice" type="number" placeholder="Price e.g 3500" required>
+<input class="form-control" id="pBeds" type="number" placeholder="Beds" required>
+<input class="form-control" id="pBaths" type="number" placeholder="Baths" required>
+<input class="form-control" id="pSqft" type="number" placeholder="Sqft">
+<input class="form-control" id="pImage" placeholder="Image URL https://...">
+<textarea class="form-control" id="pDescription" placeholder="Description"></textarea>
+<button class="btn" type="submit">Add Property</button></form></div>
+<div class="box"><h3>Custom Listings</h3><p style="font-size:12px;color:#6b7280">Stored in browser - Export for backup</p><div style="display:flex;gap:8px;margin:12px 0"><button onclick="exportData()" style="padding:8px 12px;border-radius:8px;border:none;background:#f3f4f6;font-weight:600">Export</button><button onclick="document.getElementById('imp').click()" style="padding:8px 12px;border-radius:8px;border:none;background:#f3f4f6;font-weight:600">Import</button><input type="file" id="imp" accept=".json" style="display:none" onchange="importData(event)"><button onclick="clearAll()" style="padding:8px 12px;border-radius:8px;border:none;background:#fee2e2;color:#991b1b;font-weight:600">Clear All</button></div><div id="list"></div></div>
 </div>
+</div>
+
 <script>
-let imgs=[null,null,null,null,null,null];
-function read(input,idx){
- let file=input.files[0];if(!file)return;
- let reader=new FileReader();
- reader.onload=function(e){imgs[idx]=e.target.result;let pv=document.getElementById('pv'+idx);pv.src=e.target.result;pv.style.display='block';}
- reader.readAsDataURL(file);
-}
-let houses=JSON.parse(localStorage.getItem('veluxe_global')||'[]');
-function addHouse(){
- let t=document.getElementById('t').value,l=document.getElementById('l').value,pr=document.getElementById('p').value,bed=document.getElementById('b').value;
- let filtered=imgs.filter(x=>x);
- if(!t||filtered.length==0){alert('Add title and at least 1 picture!');return}
- let h={t:t,l:l,pr:pr,d:bed,m:filtered};houses.push(h);
- localStorage.setItem('veluxe_global',JSON.stringify(houses));loadHouses();alert('Added! Go to main site refresh!');
-}
-function loadHouses(){
- document.getElementById('list').innerHTML=houses.map((h,i)=>`<div class=house><img src="${h.m[0]}"><div><b>${h.t}</b><br>${h.l} - ${h.pr}<br><span style="color:red;font-size:12px;cursor:pointer" onclick="del(${i})">Delete</span></div></div>`).join('')||'<p style="color:gray">No houses yet</p>';
-}
-function del(i){if(confirm('Delete?')){houses.splice(i,1);localStorage.setItem('veluxe_global',JSON.stringify(houses));loadHouses()}}
+function checkPass(){if(document.getElementById('pass').value==='admin123'){document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').style.display='block';render()}else{alert('Wrong password! Default is admin123')}}
+let custom=JSON.parse(localStorage.getItem('veluxe_properties')||'[]');
+function addP(e){e.preventDefault();let p={id:'custom-'+Date.now(),title:document.getElementById('pTitle').value,location:document.getElementById('pLocation').value,type:document.getElementById('pType').value,price:Number(document.getElementById('pPrice').value),beds:Number(document.getElementById('pBeds').value),baths:Number(document.getElementById('pBaths').value),sqft:Number(document.getElementById('pSqft').value||0),image:document.getElementById('pImage').value||'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800',images:[],description:document.getElementById('pDescription').value};p.images=[p.image];custom.unshift(p);localStorage.setItem('veluxe_properties',JSON.stringify(custom));e.target.reset();render();alert('Added! Go check homepage')}
+function render(){let box=document.getElementById('list');if(!custom.length){box.innerHTML='<p style="color:#6b7280;font-size:13px">No custom yet</p>';return}box.innerHTML=custom.map(p=>`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e5e7eb"><div><b style="font-size:13px">${p.title}</b><div style="font-size:11px;color:#6b7280">${p.location} • $${p.price}/mo</div></div><button onclick="del('${p.id}')" style="background:#fee2e2;color:#991b1b;border:none;padding:6px 10px;border-radius:6px;font-weight:700">Del</button></div>`).join('')}
+function del(id){if(!confirm('Delete?'))return;custom=custom.filter(x=>x.id!==id);localStorage.setItem('veluxe_properties',JSON.stringify(custom));render()}
+function exportData(){let blob=new Blob([JSON.stringify(custom,null,2)],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='veluxe-listings.json';a.click()}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=function(ev){try{custom=JSON.parse(ev.target.result);localStorage.setItem('veluxe_properties',JSON.stringify(custom));render();alert('Imported')}catch{alert('Invalid file')}};r.readAsText(f)}
+function clearAll(){if(!confirm('Clear all custom?'))return;custom=[];localStorage.setItem('veluxe_properties',JSON.stringify(custom));render()}
 </script>
 </body></html>
