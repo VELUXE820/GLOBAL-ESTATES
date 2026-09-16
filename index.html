@@ -1,1 +1,89 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>VELUXE Global Estates - Worldwide</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Segoe UI,sans-serif}body{background:#f8fafc}.nav{background:white;padding:14px 20px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99;box-shadow:0 2px 20px rgba(0,0,0,.06)}.logo{font-weight:900;font-size:22px}.logo span{color:#2563eb}.hero{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:white;padding:60px 20px;text-align:center}.hero h1{font-size:38px;font-weight:800}.search{background:white;max-width:900px;margin:20px auto;display:grid;grid-template-columns:1fr 1fr 1fr 90px;gap:10px;padding:12px;border-radius:16px}select,input{padding:12px;border:1px solid #e2e8f0;border-radius:10px}.btn{background:#2563eb;color:white;border:none;border-radius:10px;font-weight:700;cursor:pointer}.grid{max-width:1200px;margin:30px auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;padding:0 20px}.card{background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.05)}.card img{width:100%;height:200px;object-fit:cover}.body{padding:14px}.price{font-size:20px;font-weight:800}.loc{color:#64748b;font-size:13px}.wa{display:block;background:#25D366;color:white;text-align:center;padding:10px;border-radius:10px;text-decoration:none;font-weight:700;margin-top:10px}@media(max-width:700px){.search{grid-template-columns:1fr}.hero h1{font-size:28px}}</style></head><body><div class="nav"><div class="logo">VELUXE <span>GLOBAL</span></div><div>Est. 2026</div></div><div class="hero"><h1>Find Homes Anywhere in the World</h1><p>Verified properties in 50+ countries</p><div class="search"><select><option>All Countries</option><option>Dubai, UAE</option><option>London, UK</option><option>New York, USA</option><option>Lagos, NG</option><option>Toronto, CA</option></select><select><option>Buy / Rent</option><option>Buy</option><option>Rent</option></select><select><option>$100k - $1M+</option></select><button class="btn">Search</button></div></div><div class="grid" id="g"></div><script>const p=[{i:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600",t:"Luxury Villa Palm Jumeirah",l:"Dubai, UAE",pr:"$1,250,000",b:"5 Bed"}, {i:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600",t:"Apartment Canary Wharf",l:"London, UK",pr:"$3,200/mo",b:"2 Bed"}, {i:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600",t:"Penthouse Manhattan",l:"New York, USA",pr:"$2,800,000",b:"3 Bed"}, {i:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600",t:"Beachfront Lekki",l:"Lagos, Nigeria",pr:"$450,000",b:"4 Bed"}, {i:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=600",t:"Condo Downtown",l:"Toronto, Canada",pr:"$890,000",b:"2 Bed"}, {i:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600",t:"Marina Luxury",l:"Dubai, UAE",pr:"$1,800/mo",b:"1 Bed"}];let h="";p.forEach(x=>{h+=`<div class=card><img src=${x.i}><div class=body><div class=price>${x.pr}</div><div style=font-weight:700>${x.t}</div><div class=loc>${x.l} • ${x.b}</div><a class=wa href="https://wa.me/2340000000000?text=Hi, I want ${x.t} in ${x.l}" target=_blank>WhatsApp Inquiry</a></div></div>`});document.getElementById('g').innerHTML=h;</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VELUXE Global Estates | Luxury Homes Worldwide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+body{background:#f8fafc;color:#0f172a}
+.nav{background:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.06);position:sticky;top:0;z-index:99}
+.logo{font-weight:900;font-size:22px;letter-spacing:-0.5px}.logo span{color:#2563eb}
+.nav a{color:#0f172a;text-decoration:none;margin-left:18px;font-weight:600;font-size:14px}
+.hero{background:linear-gradient(180deg,#0f172a 0%, #1e3a8a 100%);color:#fff;padding:70px 20px 90px;text-align:center}
+.hero h1{font-size:42px;font-weight:800;line-height:1.1;max-width:700px;margin:0 auto}
+.hero p{opacity:.8;margin:12px auto 24px;max-width:600px}
+.search-box{background:#fff;max-width:1000px;margin:30px auto -110px;border-radius:18px;padding:14px;display:grid;grid-template-columns:1.2fr 1fr 1fr 100px;gap:10px;box-shadow:0 20px 40px rgba(0,0,0,.15)}
+.search-box select,.search-box input{padding:13px 14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc}
+.btn-search{background:#2563eb;color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer}
+.stats{max-width:1000px;margin:90px auto 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0 20px;text-align:center}
+.stat b{font-size:28px;display:block}
+.grid{max-width:1200px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.06);transition:.2s}
+.card:hover{transform:translateY(-4px)}
+.card .img-wrap{position:relative}.card img{width:100%;height:220px;object-fit:cover}
+.badge{position:absolute;top:12px;left:12px;background:#fff;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800}
+.verified{position:absolute;top:12px;right:12px;background:#10b981;color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800}
+.card-body{padding:16px}
+.price{font-size:22px;font-weight:800}.title{font-weight:700;margin:4px 0}.loc{color:#64748b;font-size:13px}
+.features{display:flex;gap:12px;margin:10px 0;font-size:13px;color:#334155}
+.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:12px;border-radius:12px;font-weight:700;margin-top:10px}
+.footer{background:#0f172a;color:#94a3b8;padding:50px 20px;margin-top:60px;text-align:center}
+@media(max-width:750px){.search-box{grid-template-columns:1fr;margin:20px 20px -60px}.hero h1{font-size:32px}.stats{grid-template-columns:repeat(2,1fr);margin-top:70px}}
+</style>
+</head>
+<body>
+<div class="nav">
+  <div class="logo">VELUXE <span>GLOBAL</span></div>
+  <div><a href="#">Buy</a><a href="#">Rent</a><a href="#" style="background:#0f172a;color:#fff;padding:8px 14px;border-radius:20px">List Property</a></div>
+</div>
+
+<div class="hero">
+  <h1>Find Your Dream Home Anywhere In The World</h1>
+  <p>Over 2,400+ verified luxury properties across Dubai, London, New York, Toronto & Lagos. Trusted by 15,000+ buyers.</p>
+  <div class="search-box">
+    <select><option>🌍 All Countries</option><option>🇦🇪 Dubai, UAE</option><option>🇬🇧 London, UK</option><option>🇺🇸 New York, USA</option><option>🇳🇬 Lagos, Nigeria</option><option>🇨🇦 Toronto, Canada</option></select>
+    <select><option>🏠 All Types</option><option>Villa</option><option>Apartment</option><option>Penthouse</option></select>
+    <select><option>💰 $100k - $5M+</option><option>$100k - $500k</option><option>$500k - $1M</option><option>$1M - $5M+</option></select>
+    <button class="btn-search">Search</button>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><b>2,400+</b>Properties</div>
+  <div class="stat"><b>52</b>Countries</div>
+  <div class="stat"><b>15k+</b>Happy Clients</div>
+  <div class="stat"><b>4.9/5</b>Trustpilot</div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<div class="footer">
+  <h3 style="color:#fff">VELUXE Global Estates</h3>
+  <p style="max-width:600px;margin:10px auto">Headquarters: Dubai Silicon Oasis, UAE | London: Canary Wharf | Lagos: Lekki Phase 1<br>© 2026 VELUXE Global Estates. All properties verified.</p>
+</div>
+
+<script>
+const props=[
+{i:"https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800",t:"Palm Jumeirah Beach Villa",l:"Dubai, UAE",pr:"$1,250,000",bed:"5 Bed • 6 Bath • 4,200 sqft",type:"FOR SALE"},
+{i:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",t:"Canary Wharf Sky Apartment",l:"London, UK",pr:"$3,200/mo",bed:"2 Bed • 2 Bath • 1,100 sqft",type:"FOR RENT"},
+{i:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",t:"Manhattan Central Penthouse",l:"New York, USA",pr:"$2,850,000",bed:"3 Bed • 3.5 Bath • 2,800 sqft",type:"FOR SALE"},
+{i:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",t:"Lekki Oceanfront Mansion",l:"Lagos, Nigeria",pr:"$480,000",bed:"4 Bed • 5 Bath • 3,500 sqft",type:"FOR SALE"},
+{i:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800",t:"Toronto CN Tower Condo",l:"Toronto, Canada",pr:"$890,000",bed:"2 Bed • 2 Bath • 950 sqft",type:"FOR SALE"},
+{i:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",t:"Dubai Marina Yacht View",l:"Dubai, UAE",pr:"$2,100/mo",bed:"1 Bed • 1 Bath • 750 sqft",type:"FOR RENT"}
+];
+document.getElementById('grid').innerHTML=props.map(p=>`
+<div class="card">
+  <div class="img-wrap"><img src="${p.i}"><div class="badge">${p.type}</div><div class="verified">✓ VERIFIED</div></div>
+  <div class="card-body">
+    <div class="price">${p.pr}</div>
+    <div class="title">${p.t}</div>
+    <div class="loc">📍 ${p.l}</div>
+    <div class="features"><span>🛏 ${p.bed}</span></div>
+    <a class="wa-btn" href="https://wa.me/2340000000000?text=Hello, I'm interested in ${p.t} in ${p.l} - ${p.pr}" target="_blank">💬 WhatsApp Agent</a>
+  </div>
+</div>`).join('');
+</script>
+</body>
+</html>
