@@ -3,87 +3,137 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VELUXE Global Estates | Luxury Homes Worldwide</title>
+<title>VELUXE Global Estates | Trusted Worldwide</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{background:#f8fafc;color:#0f172a}
 .nav{background:#fff;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.06);position:sticky;top:0;z-index:99}
-.logo{font-weight:900;font-size:22px;letter-spacing:-0.5px}.logo span{color:#2563eb}
-.nav a{color:#0f172a;text-decoration:none;margin-left:18px;font-weight:600;font-size:14px}
-.hero{background:linear-gradient(180deg,#0f172a 0%, #1e3a8a 100%);color:#fff;padding:70px 20px 90px;text-align:center}
-.hero h1{font-size:42px;font-weight:800;line-height:1.1;max-width:700px;margin:0 auto}
-.hero p{opacity:.8;margin:12px auto 24px;max-width:600px}
-.search-box{background:#fff;max-width:1000px;margin:30px auto -110px;border-radius:18px;padding:14px;display:grid;grid-template-columns:1.2fr 1fr 1fr 100px;gap:10px;box-shadow:0 20px 40px rgba(0,0,0,.15)}
-.search-box select,.search-box input{padding:13px 14px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc}
-.btn-search{background:#2563eb;color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer}
-.stats{max-width:1000px;margin:90px auto 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0 20px;text-align:center}
-.stat b{font-size:28px;display:block}
+.logo{font-weight:900;font-size:22px}.logo span{color:#2563eb}
+.hero{background:linear-gradient(180deg,#0f172a,#1e3a8a);color:#fff;padding:80px 20px 100px;text-align:center}
+.hero h1{font-size:42px;font-weight:800;max-width:750px;margin:0 auto;line-height:1.1}
+.hero p{opacity:.8;margin:14px auto 26px;max-width:650px}
+.search{background:#fff;max-width:1000px;margin:30px auto -110px;border-radius:18px;padding:14px;display:grid;grid-template-columns:1.2fr 1fr 1fr 100px;gap:10px;box-shadow:0 20px 40px rgba(0,0,0,.15)}
+.search select,.search input{padding:13px;border:1px solid #e2e8f0;border-radius:12px;background:#f8fafc}
+.btn{background:#2563eb;color:#fff;border:none;border-radius:12px;font-weight:700;cursor:pointer}
+.stats{max-width:1000px;margin:100px auto 20px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0 20px;text-align:center}
+.stat b{font-size:28px;display:block;color:#0f172a}
 .grid{max-width:1200px;margin:20px auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
-.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.06);transition:.2s}
-.card:hover{transform:translateY(-4px)}
-.card .img-wrap{position:relative}.card img{width:100%;height:220px;object-fit:cover}
-.badge{position:absolute;top:12px;left:12px;background:#fff;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800}
-.verified{position:absolute;top:12px;right:12px;background:#10b981;color:#fff;padding:6px 10px;border-radius:20px;font-size:11px;font-weight:800}
-.card-body{padding:16px}
-.price{font-size:22px;font-weight:800}.title{font-weight:700;margin:4px 0}.loc{color:#64748b;font-size:13px}
-.features{display:flex;gap:12px;margin:10px 0;font-size:13px;color:#334155}
-.wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:#fff;text-decoration:none;padding:12px;border-radius:12px;font-weight:700;margin-top:10px}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.card img{width:100%;height:220px;object-fit:cover}
+.card-body{padding:16px}.price{font-size:22px;font-weight:800}.loc{color:#64748b;font-size:13px;margin:4px 0}
+.badge-row{display:flex;gap:6px;margin:8px 0;flex-wrap:wrap}.mini{font-size:10px;background:#eef2ff;color:#2563eb;padding:5px 8px;border-radius:20px;font-weight:700}
+.wa{display:flex;justify-content:center;gap:6px;background:#25D366;color:#fff;text-decoration:none;padding:11px;border-radius:12px;font-weight:700;margin-top:10px}
+.map-btn{display:block;text-align:center;border:1px solid #e2e8f0;padding:10px;border-radius:12px;text-decoration:none;color:#0f172a;font-weight:600;margin-top:8px;font-size:13px}
+.section{max-width:1200px;margin:50px auto;padding:0 20px}
+.section h2{font-size:26px;font-weight:800;margin-bottom:18px}
+.calc{background:#fff;border-radius:18px;padding:20px;box-shadow:0 6px 24px rgba(0,0,0,.06);display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.calc input{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin-top:6px}
+.agents{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.agent{background:#fff;border-radius:18px;padding:18px;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.agent img{width:80px;height:80px;border-radius:50%;object-fit:cover}
+.reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.review{background:#fff;border-radius:18px;padding:18px;box-shadow:0 6px 24px rgba(0,0,0,.06)}
+.stars{color:#f59e0b}
 .footer{background:#0f172a;color:#94a3b8;padding:50px 20px;margin-top:60px;text-align:center}
-@media(max-width:750px){.search-box{grid-template-columns:1fr;margin:20px 20px -60px}.hero h1{font-size:32px}.stats{grid-template-columns:repeat(2,1fr);margin-top:70px}}
+.news{display:flex;max-width:400px;margin:16px auto;gap:8px}.news input{flex:1;padding:12px;border-radius:10px;border:none}.news button{padding:12px 16px;border-radius:10px;border:none;background:#2563eb;color:#fff;font-weight:700}
+@media(max-width:750px){.search{grid-template-columns:1fr;margin:20px 20px -60px}.hero h1{font-size:32px}.stats{grid-template-columns:repeat(2,1fr);margin-top:80px}.calc{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="nav">
-  <div class="logo">VELUXE <span>GLOBAL</span></div>
-  <div><a href="#">Buy</a><a href="#">Rent</a><a href="#" style="background:#0f172a;color:#fff;padding:8px 14px;border-radius:20px">List Property</a></div>
-</div>
+<div class="nav"><div class="logo">VELUXE <span>GLOBAL</span></div><div style="font-size:13px;font-weight:600">🌍 52 Countries • Est. 2026</div></div>
 
 <div class="hero">
-  <h1>Find Your Dream Home Anywhere In The World</h1>
-  <p>Over 2,400+ verified luxury properties across Dubai, London, New York, Toronto & Lagos. Trusted by 15,000+ buyers.</p>
-  <div class="search-box">
-    <select><option>🌍 All Countries</option><option>🇦🇪 Dubai, UAE</option><option>🇬🇧 London, UK</option><option>🇺🇸 New York, USA</option><option>🇳🇬 Lagos, Nigeria</option><option>🇨🇦 Toronto, Canada</option></select>
-    <select><option>🏠 All Types</option><option>Villa</option><option>Apartment</option><option>Penthouse</option></select>
-    <select><option>💰 $100k - $5M+</option><option>$100k - $500k</option><option>$500k - $1M</option><option>$1M - $5M+</option></select>
-    <button class="btn-search">Search</button>
-  </div>
+<h1>Find Verified Luxury Homes Worldwide</h1>
+<p>2,400+ properties in Dubai, London, New York, Toronto & Lagos. Every listing verified with title deed.</p>
+<div class="search">
+<select><option>🌍 All Countries</option><option>🇦🇪 Dubai, UAE</option><option>🇬🇧 London, UK</option><option>🇺🇸 New York, USA</option><option>🇳🇬 Lagos</option><option>🇨🇦 Toronto</option></select>
+<select><option>All Types</option><option>Villa</option><option>Apartment</option><option>Penthouse</option></select>
+<select><option>$100k - $5M+</option></select>
+<button class="btn">Search</button>
+</div>
 </div>
 
 <div class="stats">
-  <div class="stat"><b>2,400+</b>Properties</div>
-  <div class="stat"><b>52</b>Countries</div>
-  <div class="stat"><b>15k+</b>Happy Clients</div>
-  <div class="stat"><b>4.9/5</b>Trustpilot</div>
+<div><b>2,400+</b>Verified Listings</div>
+<div><b>52</b>Countries</div>
+<div><b>15,200+</b>Clients</div>
+<div><b>4.9★</b>Trustpilot</div>
 </div>
 
 <div class="grid" id="grid"></div>
 
+<div class="section">
+<h2>🧮 Mortgage Calculator</h2>
+<div class="calc">
+<div>
+<label>Property Price ($)</label><input id="price" type="number" value="1250000">
+<label>Down Payment ($)</label><input id="down" type="number" value="250000">
+<label>Interest Rate %</label><input id="rate" type="number" value="4.5">
+<label>Years</label><input id="years" type="number" value="20">
+<button class="btn" style="width:100%;padding:12px;margin-top:12px" onclick="calculate()">Calculate Monthly</button>
+</div>
+<div style="background:#f1f5f9;border-radius:12px;padding:20px;text-align:center">
+<h3>Estimated Monthly</h3><div id="result" style="font-size:36px;font-weight:800;color:#2563eb;margin:14px 0">$6,329/mo</div>
+<p style="font-size:13px;color:#64748b">Includes principal & interest. Taxes & insurance not included. Contact agent for full breakdown.</p>
+</div>
+</div>
+</div>
+
+<div class="section">
+<h2>👩‍💼 Our Global Agents</h2>
+<div class="agents">
+<div class="agent"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200"><h4>Sarah Al-Falasi</h4><p style="font-size:13px;color:#64748b">Dubai Specialist • 9 years • 320+ sales</p><p style="font-size:12px;margin-top:6px">📞 Speaks: English, Arabic</p></div>
+<div class="agent"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200"><h4>James Whitmore</h4><p style="font-size:13px;color:#64748b">London & UK • 12 years • 410+ sales</p><p style="font-size:12px;margin-top:6px">📞 Speaks: English, French</p></div>
+<div class="agent"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688a7?w=200"><h4>Amara Okafor</h4><p style="font-size:13px;color:#64748b">Lagos & Africa • 7 years • 280+ sales</p><p style="font-size:12px;margin-top:6px">📞 Speaks: English, Yoruba</p></div>
+</div>
+</div>
+
+<div class="section">
+<h2>⭐ What Clients Say</h2>
+<div class="reviews">
+<div class="review"><div class="stars">★★★★★</div><p>"VELUXE helped me buy my Palm Jumeirah villa in 72 hours. Title deed verified, no stress!"</p><b>— Ahmed R., Dubai</b></div>
+<div class="review"><div class="stars">★★★★★</div><p>"As a Nigerian in UK, they made Lagos investment easy. Transparent and fast."</p><b>— Tolu A., London</b></div>
+<div class="review"><div class="stars">★★★★★</div><p>"Best global platform. I viewed Toronto condo via virtual tour before flying in."</p><b>— Lisa M., Canada</b></div>
+</div>
+</div>
+
 <div class="footer">
-  <h3 style="color:#fff">VELUXE Global Estates</h3>
-  <p style="max-width:600px;margin:10px auto">Headquarters: Dubai Silicon Oasis, UAE | London: Canary Wharf | Lagos: Lekki Phase 1<br>© 2026 VELUXE Global Estates. All properties verified.</p>
+<h3 style="color:#fff">VELUXE Global Estates</h3>
+<p>HQ: Dubai Silicon Oasis, UAE | London: Canary Wharf E14 | Lagos: Lekki Phase 1</p>
+<div class="news"><input placeholder="Your email"><button>Join Newsletter</button></div>
+<p style="margin-top:10px;font-size:12px">© 2026 VELUXE Global Estates • All properties title-verified • CAC & DED Licensed</p>
 </div>
 
 <script>
-const props=[
-{i:"https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800",t:"Palm Jumeirah Beach Villa",l:"Dubai, UAE",pr:"$1,250,000",bed:"5 Bed • 6 Bath • 4,200 sqft",type:"FOR SALE"},
-{i:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",t:"Canary Wharf Sky Apartment",l:"London, UK",pr:"$3,200/mo",bed:"2 Bed • 2 Bath • 1,100 sqft",type:"FOR RENT"},
-{i:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",t:"Manhattan Central Penthouse",l:"New York, USA",pr:"$2,850,000",bed:"3 Bed • 3.5 Bath • 2,800 sqft",type:"FOR SALE"},
-{i:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",t:"Lekki Oceanfront Mansion",l:"Lagos, Nigeria",pr:"$480,000",bed:"4 Bed • 5 Bath • 3,500 sqft",type:"FOR SALE"},
-{i:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800",t:"Toronto CN Tower Condo",l:"Toronto, Canada",pr:"$890,000",bed:"2 Bed • 2 Bath • 950 sqft",type:"FOR SALE"},
-{i:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",t:"Dubai Marina Yacht View",l:"Dubai, UAE",pr:"$2,100/mo",bed:"1 Bed • 1 Bath • 750 sqft",type:"FOR RENT"}
+const data=[
+{i:"https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800",t:"Palm Jumeirah Beach Villa",l:"Dubai, UAE",pr:"$1,250,000",b:"5 Bed • 6 Bath • 4,200 sqft"},
+{i:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800",t:"Canary Wharf Sky Apartment",l:"London, UK",pr:"$3,200/mo",b:"2 Bed • 2 Bath • 1,100 sqft"},
+{i:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800",t:"Manhattan Penthouse",l:"New York, USA",pr:"$2,850,000",b:"3 Bed • 3.5 Bath • 2,800 sqft"},
+{i:"https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800",t:"Lekki Oceanfront Mansion",l:"Lagos, Nigeria",pr:"$480,000",b:"4 Bed • 5 Bath • 3,500 sqft"},
+{i:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800",t:"Toronto CN Tower Condo",l:"Toronto, Canada",pr:"$890,000",b:"2 Bed • 2 Bath • 950 sqft"},
+{i:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800",t:"Dubai Marina Yacht View",l:"Dubai, UAE",pr:"$2,100/mo",b:"1 Bed • 1 Bath • 750 sqft"}
 ];
-document.getElementById('grid').innerHTML=props.map(p=>`
+document.getElementById('grid').innerHTML=data.map(p=>`
 <div class="card">
-  <div class="img-wrap"><img src="${p.i}"><div class="badge">${p.type}</div><div class="verified">✓ VERIFIED</div></div>
-  <div class="card-body">
-    <div class="price">${p.pr}</div>
-    <div class="title">${p.t}</div>
-    <div class="loc">📍 ${p.l}</div>
-    <div class="features"><span>🛏 ${p.bed}</span></div>
-    <a class="wa-btn" href="https://wa.me/2340000000000?text=Hello, I'm interested in ${p.t} in ${p.l} - ${p.pr}" target="_blank">💬 WhatsApp Agent</a>
-  </div>
+<img src="${p.i}">
+<div class="card-body">
+<div class="price">${p.pr}</div>
+<div style="font-weight:700">${p.t}</div>
+<div class="loc">📍 ${p.l} • ${p.b}</div>
+<div class="badge-row"><span class="mini">✓ TITLE VERIFIED</span><span class="mini">🎥 DRONE VIDEO</span><span class="mini">🏠 VIRTUAL TOUR</span></div>
+<a class="wa" href="https://wa.me/2340000000000?text=Hi, I'm interested in ${p.t} in ${p.l}" target="_blank">💬 WhatsApp Agent</a>
+<a class="map-btn" href="https://maps.google.com/?q=${p.l}" target="_blank">🗺 View on Map</a>
+</div>
 </div>`).join('');
+function calculate(){
+let P=document.getElementById('price').value-document.getElementById('down').value;
+let r=document.getElementById('rate').value/100/12;
+let n=document.getElementById('years').value*12;
+let M=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+document.getElementById('result').innerText="$"+Math.round(M).toLocaleString()+"/mo";
+}
+calculate();
 </script>
 </body>
 </html>
