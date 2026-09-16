@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Admin - VELUXE</title>
+<style>*{font-family:Arial}body{background:#f1f5f9;padding:20px}.box{background:#fff;max-width:700px;margin:0 auto;padding:20px;border-radius:16px} input,textarea{width:100%;padding:12px;margin:6px 0;border:1px solid #ddd;border-radius:10px} button{background:#2563eb;color:#fff;border:none;padding:14px;border-radius:10px;width:100%;font-weight:700;cursor:pointer}.house{background:#f8fafc;padding:10px;border-radius:10px;margin:8px 0;display:flex;gap:10px}.house img{width:60px;height:60px;object-fit:cover;border-radius:8px}</style>
+</head><body>
+<div class="box" id="login">
+<h2>🔐 Admin Login</h2>
+<input id="pass" type="password" placeholder="Enter admin password">
+<button onclick="if(document.getElementById('pass').value=='admin123'){document.getElementById('login').style.display='none';document.getElementById('main').style.display='block';loadHouses()}else{alert('Wrong password! Use admin123')}">Login</button>
+<p style="font-size:12px;color:gray">Demo password: admin123 - buyer will change it</p>
+</div>
+
+<div class="box" id="main" style="display:none">
+<h2>🏠 Add New Property (6 Pictures)</h2>
+<input id="t" placeholder="House Title e.g Palm Jumeirah Villa">
+<input id="l" placeholder="Location e.g Dubai, UAE">
+<input id="p" placeholder="Price e.g $1,250,000">
+<input id="b" placeholder="Bed/Bath e.g 5 Bed • 6 Bath • 4,200 sqft">
+<textarea id="d" placeholder="Write up about house..."></textarea>
+<p><b>6 Picture Links (Paste image URL, you fit get from imgur.com):</b></p>
+<input id="i1" placeholder="Picture 1 URL (Main)"><input id="i2" placeholder="Picture 2 URL (Living Room)"><input id="i3" placeholder="Picture 3 URL (Kitchen)"><input id="i4" placeholder="Picture 4 URL (Bedroom)"><input id="i5" placeholder="Picture 5 URL (Bathroom)"><input id="i6" placeholder="Picture 6 URL (Outside/Pool)">
+<button onclick="addHouse()">+ ADD HOUSE TO WEBSITE</button>
+
+<h3 style="margin-top:20px">Current Houses</h3>
+<div id="list"></div>
+<p style="font-size:12px;margin-top:16px">After adding, copy the code below and replace the houses array in index.html (We go automate this later for buyer)</p>
+<textarea id="output" style="height:120px"></textarea>
+</div>
+
+<script>
+let houses=JSON.parse(localStorage.getItem('veluxe_global')||'[]');
+function addHouse(){
+const h={t:document.getElementById('t').value,l:document.getElementById('l').value,pr:document.getElementById('p').value,bed:document.getElementById('b').value,desc:document.getElementById('d').value,imgs:[i1.value,i2.value,i3.value,i4.value,i5.value,i6.value].filter(x=>x)};
+if(!h.t||!h.imgs[0]){alert('Add title and at least 1 picture!');return}
+houses.push(h);localStorage.setItem('veluxe_global',JSON.stringify(houses));loadHouses();alert('House Added! Don save for your browser. For permanent, copy code from below box.');
+}
+function loadHouses(){
+document.getElementById('list').innerHTML=houses.map((h,i)=>`<div class="house"><img src="${h.imgs[0]}"><div><b>${h.t}</b><br>${h.l} - ${h.pr}<br><a style="color:red;cursor:pointer" onclick="del(${i})">Delete</a></div></div>`).join('');
+document.getElementById('output').value="const houses="+JSON.stringify(houses,null,2)+";";
+}
+function del(i){houses.splice(i,1);localStorage.setItem('veluxe_global',JSON.stringify(houses));loadHouses()}
+loadHouses();
+</script>
+</body></html>
